@@ -37,6 +37,4 @@ function normalizePositiveInt(value, fallback) {
   return Math.floor(n);
 }
 
-module.exports = {
-  normalizePromptSpec
-};
+module.exports = { normalizePromptSpec };
