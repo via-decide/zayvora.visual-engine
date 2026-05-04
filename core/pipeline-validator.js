@@ -1,1 +1,1 @@
-module.exports = require('../pipeline-validator');
+export * from './execution/pipeline-validator.js';

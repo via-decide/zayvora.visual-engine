@@ -1,1 +1,1 @@
-module.exports = require('../artifact-writer');
+export * from './execution/artifact-writer.js';
