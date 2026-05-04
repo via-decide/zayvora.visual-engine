@@ -1,57 +1,66 @@
-import React, { useMemo, useRef, useState } from 'react'
-import { computeGesture } from '../../lib/gesture/gesture-engine'
-import { resolveState } from '../../lib/ui/state-machine'
-import { LayerStack } from './LayerStack'
+"use client"
 
-const MAX_POSITION = 2
+import { useRef, useState } from "react"
+import { computeGesture } from "@/lib/gesture/gesture-engine"
+import { resolveState } from "@/lib/ui/state-machine"
+import LayerStack from "./LayerStack"
 
-function easeOut(value: number): number {
-  const t = Math.max(-1, Math.min(1, value))
-  return 1 - Math.pow(1 - Math.abs(t), 3)
-}
-
-function buildExecutionPlan() {
-  void fetch('/api/run', { method: 'POST' })
-}
-
-export function VisualRoot() {
+export default function VisualRoot() {
   const [position, setPosition] = useState(0)
   const [offset, setOffset] = useState(0)
-  const startXRef = useRef(0)
-  const startTimeRef = useRef(0)
-  const latestGestureRef = useRef(computeGesture({ deltaX: 0, deltaTime: 1, screenWidth: 1 }))
 
-  const screenWidth = useMemo(() => window.innerWidth || 1, [])
+  const startX = useRef(0)
+  const startTime = useRef(0)
 
   function onTouchStart(e: React.TouchEvent<HTMLDivElement>) {
-    startXRef.current = e.touches[0].clientX
-    startTimeRef.current = performance.now()
+    startX.current = e.touches[0].clientX
+    startTime.current = performance.now()
   }
 
   function onTouchMove(e: React.TouchEvent<HTMLDivElement>) {
-    const deltaX = e.touches[0].clientX - startXRef.current
-    const deltaTime = performance.now() - startTimeRef.current
-    const gesture = computeGesture({ deltaX, deltaTime, screenWidth })
-    latestGestureRef.current = gesture
-    setOffset(easeOut(gesture.distanceRatio) * screenWidth)
+    const deltaX = e.touches[0].clientX - startX.current
+    const deltaTime = performance.now() - startTime.current
+
+    const gesture = computeGesture({
+      deltaX,
+      deltaTime,
+      screenWidth: window.innerWidth
+    })
+
+    setOffset(gesture.distanceRatio * window.innerWidth)
   }
 
-  function onTouchEnd() {
-    const next = resolveState(position, latestGestureRef.current, MAX_POSITION)
-    setPosition(next)
-    setOffset(0)
+  function onTouchEnd(e: React.TouchEvent<HTMLDivElement>) {
+    const deltaX = e.changedTouches[0].clientX - startX.current
+    const deltaTime = performance.now() - startTime.current
 
-    if (next === MAX_POSITION) {
-      buildExecutionPlan()
-    }
+    const gesture = computeGesture({
+      deltaX,
+      deltaTime,
+      screenWidth: window.innerWidth
+    })
+
+    const next = resolveState(position, gesture)
+
+    setPosition(Math.max(0, Math.min(2, next)))
+    setOffset(0)
   }
 
   return (
-    <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+    <div
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      style={{
+        overflow: "hidden"
+      }}
+    >
       <div
         style={{
-          transform: `translateX(${position * -100 + offset}px)`,
-          transition: 'transform 300ms ease-out'
+          display: "flex",
+          width: "300%",
+          transform: `translateX(calc(${-position * 100}% + ${offset}px))`,
+          transition: "transform 300ms ease-out"
         }}
       >
         <LayerStack />

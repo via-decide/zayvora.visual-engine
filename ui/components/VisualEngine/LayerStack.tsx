@@ -1,11 +1,21 @@
-import React from 'react'
+import IntentLayer from "./layers/IntentLayer"
+import StructureLayer from "./layers/StructureLayer"
+import OutputLayer from "./layers/OutputLayer"
 
-export function LayerStack() {
+export default function LayerStack() {
   return (
-    <div>
-      <section>Intent Layer</section>
-      <section>Structure Layer</section>
-      <section>Output Layer</section>
-    </div>
+    <>
+      <div style={{ width: "100vw" }}>
+        <IntentLayer />
+      </div>
+
+      <div style={{ width: "100vw" }}>
+        <StructureLayer />
+      </div>
+
+      <div style={{ width: "100vw" }}>
+        <OutputLayer />
+      </div>
+    </>
   )
 }
