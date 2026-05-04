@@ -1,3 +1,3 @@
 export default function OutputLayer() {
-  return <h1>Output</h1>
+  return <h1>Generated Output</h1>
 }
