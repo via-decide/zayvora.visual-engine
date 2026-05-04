@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zayvora Workspace</title>
+  <link rel="stylesheet" href="/workspace/style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="kicker">ZAYVORA LOCAL</p>
+      <h1>Vague intent in. Deterministic carousel out.</h1>
+      <textarea id="input" placeholder="why APIs fail at scale"></textarea>
+      <div class="row">
+        <select id="mode">
+          <option value="full">full system</option>
+          <option value="create">nfc create</option>
+          <option value="render">render only</option>
+        </select>
+        <button id="generate">Generate</button>
+      </div>
+    </section>
+
+    <section class="trace">
+      <h2>Trace</h2>
+      <div id="traceList"></div>
+    </section>
+
+    <section class="preview">
+      <h2>Slides</h2>
+      <iframe id="previewFrame"></iframe>
+    </section>
+  </main>
+  <script src="/workspace/app.js"></script>
+</body>
+</html>

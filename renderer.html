@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zayvora Renderer</title>
+  <link rel="stylesheet" href="/tokens.css">
+</head>
+<body>
+  <main id="carousel" class="carousel"></main>
+  <script>
+    window.renderSlides = function renderSlides(slides) {
+      const root = document.getElementById("carousel");
+      root.innerHTML = slides.map((slide, index) => `
+        <section class="slide ${slide.template || "statement"}">
+          <div class="eyebrow">${slide.eyebrow || "ZAYVORA"}</div>
+          <h1>${slide.headline || slide.left || ""}</h1>
+          <p>${slide.subline || slide.right || ""}</p>
+          <div class="count">${index + 1}</div>
+        </section>
+      `).join("");
+    };
+  </script>
+</body>
+</html>
