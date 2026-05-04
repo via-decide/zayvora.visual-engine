@@ -1,0 +1,11 @@
+%PDF-1.1
+% Deterministic Visual Execution Report
+Flow: flow_0fdd0b93
+Prompt: futuristic city skyline
+Total Results: 4
+--- GRID ---
+1. var_028dfc4a_run_01 | image://91ff6a52@512 | {"style":"cinematic","lighting":"golden hour","composition":"portrait"}
+2. var_22cc6c30_run_03 | image://05fc5894@512 | {"style":"minimal","lighting":"golden hour","composition":"portrait"}
+3. var_4d73715a_run_02 | image://55e57b06@512 | {"style":"cinematic","lighting":"golden hour","composition":"wide"}
+4. var_691c21c8_run_04 | image://e19c0c78@512 | {"style":"minimal","lighting":"golden hour","composition":"wide"}
+%%EOF
