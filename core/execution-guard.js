@@ -1,1 +1,1 @@
-module.exports = require('../execution-guard');
+export * from './execution/execution-guard.js';
