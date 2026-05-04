@@ -1,19 +1,22 @@
-function generate(contract) {
-  return contract.files.map(fileName => ({
+const { stableHash } = require('./core/variation-engine');
+
+function generate(contract, variation = null) {
+  const files = contract.files.map(fileName => ({
     name: fileName,
-    content: generateContent(fileName)
+    content: generateContent(fileName, contract.constraints, variation)
   }));
+  contract.validateConstraints(files.length);
+  return files;
 }
 
-function generateContent(fileName) {
-  if (fileName.endsWith(".md")) {
-    return `# Task
+function generateContent(fileName, constraints = {}, variation = null) {
+  if (fileName.endsWith('.md')) {
+    return `# Task\n\nGenerated task file: ${fileName}\n\n- deterministic\n- contract enforced\n`;
+  }
 
-Generated task file: ${fileName}
-
-- deterministic
-- contract enforced
-`;
+  if (fileName.endsWith('.png')) {
+    const payload = `${fileName}|${JSON.stringify(variation || {})}|${JSON.stringify(constraints)}`;
+    return `PNG_SIM:${stableHash(payload)}:${constraints.resolution || 1024}`;
   }
 
   throw new Error(`UNSUPPORTED_GENERATION: ${fileName}`);
