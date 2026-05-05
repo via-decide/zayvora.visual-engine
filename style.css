@@ -95,3 +95,29 @@ iframe {
   border-radius: 18px;
   background: #08080c;
 }
+
+.error-box {
+  white-space: pre-wrap;
+  background: #1a0f14;
+  border: 1px solid #5b2131;
+  color: #fecdd3;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.debug-log {
+  margin-top: 10px;
+  max-height: 220px;
+  overflow: auto;
+  display: grid;
+  gap: 6px;
+}
+
+.debug-line {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  background: #08080c;
+  border-radius: 8px;
+  padding: 8px;
+  color: #a1a1aa;
+}
