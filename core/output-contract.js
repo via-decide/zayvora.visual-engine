@@ -1,1 +1,1 @@
-module.exports = require('../output-contract');
+export { OutputContract } from "../output-contract.js";

@@ -1,5 +1,5 @@
-const { run } = require("../engine/orchestrator");
-const { OutputContract } = require("../core/output-contract");
+import { run } from "./engine/orchestrator.js";
+import { OutputContract } from "./core/output-contract.js";
 
 (async () => {
   const contract = new OutputContract({

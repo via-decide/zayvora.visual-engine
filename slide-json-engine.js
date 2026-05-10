@@ -72,15 +72,18 @@ function buildSlide(template, index, pair, topic) {
   };
 }
 
-function hash(value) {
-  return [...String(value)].reduce((acc, char) => (acc + char.charCodeAt(0)) % 997, 0);
+export function hash(value) {
+  const input = String(value);
+  let h = 5381;
+  for (let i = 0; i < input.length; i += 1) h = ((h << 5) + h) ^ input.charCodeAt(i);
+  return h >>> 0;
 }
 
-function titleCase(value) {
+export function titleCase(value) {
   return String(value).replace(/\w\S*/g, word => word[0].toUpperCase() + word.slice(1).toLowerCase());
 }
 
-function keyword(value) {
+export function keyword(value) {
   const words = String(value).replace(/[^a-zA-Z0-9 ]/g, "").split(" ").filter(Boolean);
   return words[words.length - 1] || "system";
 }

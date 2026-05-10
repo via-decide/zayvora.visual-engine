@@ -37,4 +37,4 @@ function normalizePositiveInt(value, fallback) {
   return Math.floor(n);
 }
 
-module.exports = { OutputContract };
+export { OutputContract };
