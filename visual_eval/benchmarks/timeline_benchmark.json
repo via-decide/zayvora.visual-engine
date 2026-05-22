@@ -1,0 +1,7 @@
+{
+  "benchmark_id": "TIMELINE-BENCH-001",
+  "fps": 30,
+  "expected_continuity": true,
+  "expected_gaps": 0,
+  "expected_ordering_min": 1.0
+}

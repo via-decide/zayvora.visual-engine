@@ -1,0 +1,6 @@
+{
+  "benchmark_id": "FRAME-BENCH-001",
+  "frame": 120,
+  "expected_determinism": true,
+  "compare_mode": "hash"
+}
