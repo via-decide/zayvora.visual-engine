@@ -1,0 +1,14 @@
+{
+  "scene_id": "SCENE-001",
+  "duration_frames": 120,
+  "layers": [
+    {
+      "layer_id": "LAYER-TITLE",
+      "type": "text",
+      "content": "Why APIs Fail at Scale",
+      "position": { "x": 120, "y": 160 },
+      "style": {},
+      "motion": {}
+    }
+  ]
+}
