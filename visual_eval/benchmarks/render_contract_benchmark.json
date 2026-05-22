@@ -1,0 +1,5 @@
+{
+  "benchmark_id": "CONTRACT-BENCH-001",
+  "required_fields": ["request_id", "render_hash", "timeline_hash", "scene_graph_hash"],
+  "deterministic": true
+}
