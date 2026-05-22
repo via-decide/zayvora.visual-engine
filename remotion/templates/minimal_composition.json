@@ -1,0 +1,15 @@
+{
+  "render_contract": {
+    "contract_id": "RENDER-MIN-001",
+    "renderer": "remotion",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_frames": 150
+  },
+  "scene_graph": {
+    "scenes": [{ "scene_id": "SCENE-001", "duration_frames": 150, "layers": [{ "layer_id": "TITLE", "type": "text", "content": "Minimal", "position": { "x": 80, "y": 80 } }] }]
+  },
+  "timeline": { "segments": [{ "scene_id": "SCENE-001", "start_frame": 0, "duration_frames": 150 }], "transitions": [], "keyframes": [] },
+  "asset_manifest": { "assets": [] }
+}

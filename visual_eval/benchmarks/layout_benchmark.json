@@ -1,0 +1,7 @@
+{
+  "benchmark_id": "LAYOUT-BENCH-001",
+  "viewport": { "width": 1920, "height": 1080 },
+  "expected_overflow": 0,
+  "expected_alignment_min": 0.9,
+  "expected_readability_min": 1.0
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "REQ-001",
+  "prompt": "Create a deterministic intro slide about API reliability",
+  "normalized_intent": "intro_title_card",
+  "format": "16:9",
+  "duration": { "frames": 300, "fps": 30 },
+  "dimensions": { "width": 1920, "height": 1080 },
+  "scenes": [{ "scene_id": "SCENE-001" }],
+  "timeline": { "segments": [{ "scene_id": "SCENE-001", "start_frame": 0, "duration_frames": 300 }] },
+  "assets": { "assets": [] },
+  "render_hash": "sha256:placeholder",
+  "deterministic": true
+}

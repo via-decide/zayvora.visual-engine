@@ -1,0 +1,11 @@
+{
+  "render_contract": { "contract_id": "RENDER-SPL-001", "renderer": "remotion", "width": 1920, "height": 1080, "fps": 30, "duration_frames": 300 },
+  "scene_graph": { "scenes": [
+    { "scene_id": "SPLIT", "duration_frames": 300, "layers": [
+      { "layer_id": "LEFT", "type": "shape", "shape": "rect", "position": { "x": 0, "y": 0 }, "dimensions": { "width": 960, "height": 1080 }, "style": { "fill": "#111" } },
+      { "layer_id": "RIGHT", "type": "shape", "shape": "rect", "position": { "x": 960, "y": 0 }, "dimensions": { "width": 960, "height": 1080 }, "style": { "fill": "#222" } }
+    ] }
+  ]},
+  "timeline": { "segments": [{ "scene_id": "SPLIT", "start_frame": 0, "duration_frames": 300 }], "transitions": [], "keyframes": [] },
+  "asset_manifest": { "assets": [] }
+}

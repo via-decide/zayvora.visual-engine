@@ -1,0 +1,12 @@
+{
+  "render_contract": { "contract_id": "RENDER-NAR-001", "renderer": "remotion", "width": 1920, "height": 1080, "fps": 24, "duration_frames": 240 },
+  "scene_graph": { "scenes": [
+    { "scene_id": "INTRO", "duration_frames": 96, "layers": [{ "layer_id": "INTRO-TEXT", "type": "text", "content": "Narrative Intro", "position": { "x": 140, "y": 220 } }] },
+    { "scene_id": "DETAIL", "duration_frames": 144, "layers": [{ "layer_id": "DETAIL-SHAPE", "type": "shape", "shape": "rect", "position": { "x": 100, "y": 320 }, "dimensions": { "width": 600, "height": 220 } }] }
+  ]},
+  "timeline": { "segments": [
+    { "scene_id": "INTRO", "start_frame": 0, "duration_frames": 96 },
+    { "scene_id": "DETAIL", "start_frame": 96, "duration_frames": 144 }
+  ], "transitions": [{ "from_scene_id": "INTRO", "to_scene_id": "DETAIL", "start_frame": 90, "duration_frames": 6, "type": "fade" }], "keyframes": [] },
+  "asset_manifest": { "assets": [] }
+}
