@@ -12,6 +12,7 @@ export type EditorContract = {
   scene_graph: { scenes: Array<Record<string, any>> };
   timeline: { segments: Array<Record<string, any>> };
   narration?: { lines: Array<Record<string, any>> };
+  asset_manifest?: { assets: Array<Record<string, any>> };
 };
 
 function stableCommandId(index: number) {
