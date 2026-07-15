@@ -1,6 +1,7 @@
 import { sha256Hash } from '../visual/visual_hash.js';
 
 const SUPPORTED_CONFIDENCE = new Set(['VERIFIED', 'LIKELY']);
+const SUPPORTED_SCHEMA_VERSION = '1.0.0';
 
 function requireString(value, code) {
   if (typeof value !== 'string' || value.trim() === '') throw new Error(code);
@@ -33,10 +34,26 @@ function normalizeEvidence(evidence, index) {
 }
 
 export function createNexVisualHandoff(input = {}) {
+  if (input.schema_version && input.schema_version !== SUPPORTED_SCHEMA_VERSION) throw new Error(`UNSUPPORTED_NEX_HANDOFF_VERSION:${input.schema_version}`);
   const verified_findings = asArray(input.verified_findings).map(normalizeFinding);
   if (verified_findings.length === 0) throw new Error('NO_FINDINGS_EXIST');
   const source_references = asArray(input.source_references).map(normalizeSourceReference);
   const evidence_items = asArray(input.evidence_items ?? input.evidence).map(normalizeEvidence);
+  const findingIds = new Set();
+  for (const finding of verified_findings) {
+    if (findingIds.has(finding.finding_id)) throw new Error(`DUPLICATE_FINDING_ID:${finding.finding_id}`);
+    findingIds.add(finding.finding_id);
+  }
+  const evidenceIds = new Set();
+  for (const evidence of evidence_items) {
+    if (evidenceIds.has(evidence.evidence_id)) throw new Error(`DUPLICATE_EVIDENCE_ID:${evidence.evidence_id}`);
+    evidenceIds.add(evidence.evidence_id);
+  }
+  const sourceIds = new Set();
+  for (const source of source_references) {
+    if (sourceIds.has(source.source_id)) throw new Error(`DUPLICATE_SOURCE_ID:${source.source_id}`);
+    sourceIds.add(source.source_id);
+  }
   const evidenceById = new Set(evidence_items.map((item) => item.evidence_id));
   for (const finding of verified_findings) {
     for (const evidenceId of finding.evidence_ids) {
