@@ -35,3 +35,25 @@ for (const [question, focus, claims] of cases) {
   console.log(JSON.stringify({ question, focus, findings: handoff.verified_findings.map((f) => ({ id: f.finding_id, confidence: f.finding_confidence })), handoff: handoff.handoff_id, intent: result.intent.communication_objective, narrative: result.narrative.beats.map((b) => b.role), slide_count: result.artifact.slide_count, artifact: result.artifact.artifact_hash }));
 }
 assert.equal(signatures.size, cases.length);
+
+const validHandoffInput = {
+  research_id: 'research-duplicate-validation',
+  title: 'Duplicate validation',
+  original_question: 'Can duplicate Nex IDs be rejected?',
+  executive_summary: 'Nex validation should reject ambiguous handoff identity.',
+  verified_findings: [{ finding_id: 'F1', claim: 'Duplicate findings are ambiguous.', finding_confidence: 'VERIFIED', evidence_ids: ['E1'] }],
+  evidence_items: [{ evidence_id: 'E1', source_id: 'S1', text: 'Duplicate findings are ambiguous.' }],
+  source_references: [{ source_id: 'S1', title: 'Source 1' }],
+  visual_objective: 'Validation narrative',
+  audience: 'technical reviewers',
+  artifact_type: 'slide_artifact',
+};
+
+assert.throws(
+  () => createNexVisualHandoff({ ...validHandoffInput, schema_version: '9.9.9' }),
+  /UNSUPPORTED_NEX_HANDOFF_VERSION:9\.9\.9/,
+);
+assert.throws(
+  () => createNexVisualHandoff({ ...validHandoffInput, verified_findings: [validHandoffInput.verified_findings[0], validHandoffInput.verified_findings[0]] }),
+  /DUPLICATE_FINDING_ID:F1/,
+);
